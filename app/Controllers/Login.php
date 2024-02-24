@@ -5,6 +5,7 @@ namespace App\Controllers;
 
 
 use App\Models\UserModel;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Login extends BaseController
 {
@@ -14,10 +15,11 @@ class Login extends BaseController
     }
 
 
-    public function login()
+    public function login(): RedirectResponse
     {
         $userModel = new UserModel();
         $post = $this->request->getPost(['username', 'password']);
+        log_message("info", print_r($post, true));
         try {
             $userEntity = $userModel->login($post['username'], $post['password']);
             return redirect()->to('/home')->with('user', $userEntity->toArray());

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Database\Migrations\User;
 use App\Entities\UserEntity;
 use CodeIgniter\Model;
 
@@ -15,7 +14,11 @@ class UserModel extends Model
     public function login(string $username, string $password): UserEntity
     {
         $userModel = $this->groupStart()->where(['email' => $username])->orWhere(['username' => $username])->orWhere(['nik' => $username])->groupEnd()->doFirst();
-        $hashPassword = $this->hash($password);
+        if ($userModel == null) {
+            throw new \ValidationException("Invalid username or password");
+        }
+
+        $hashPassword = UserEntity::hash($password);
         if ($userModel['password'] !== $hashPassword) {
             throw new \ValidationException("Invalid username or password");
         }

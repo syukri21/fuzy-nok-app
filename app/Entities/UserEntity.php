@@ -36,14 +36,14 @@ class UserEntity extends Entity
      * @param string $password
      * @return void
      */
-    public function hash(string $password): string
+    public static function hash(string $password): string
     {
         return password_hash($password, PASSWORD_BCRYPT, ['cost' => UserEntity::$cost]);
     }
 
     public function setPassword(string $pass)
     {
-        return $this->hash($pass);
+        return UserEntity::hash($pass);
     }
 
 
