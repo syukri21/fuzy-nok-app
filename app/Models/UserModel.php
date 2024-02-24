@@ -12,13 +12,15 @@ class UserModel extends Model
 
     protected $allowedFields = [
         'username',
+        'email',
         'nik',
         'password',
-        'verify_at'
+        'verify_at',
+        'role'
     ];
     protected $useAutoIncrement = true;
     protected $returnType = UserEntity::class;
-    protected $useSoftDeletes = false;
+    protected $useSoftDeletes = true;
     protected $protectFields = true;
 
     protected bool $allowEmptyInserts = false;
