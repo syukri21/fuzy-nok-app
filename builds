@@ -101,9 +101,9 @@ foreach ($files as $file) {
         $contents = file_get_contents($file);
 
         if ($dev) {
-            $contents = str_replace('vendor/codeigniter4/framework', 'vendor/codeigniter4/codeigniter4', $contents);
+            $contents = str_replace('dependencies/codeigniter4/framework', 'dependencies/codeigniter4/codeigniter4', $contents);
         } else {
-            $contents = str_replace('vendor/codeigniter4/codeigniter4', 'vendor/codeigniter4/framework', $contents);
+            $contents = str_replace('dependencies/codeigniter4/codeigniter4', 'dependencies/codeigniter4/framework', $contents);
         }
 
         file_put_contents($file, $contents);
@@ -121,5 +121,5 @@ if ($modified === []) {
         echo " * {$file}" . PHP_EOL;
     }
 
-    echo 'Run `composer update` to sync changes with your vendor folder.' . PHP_EOL;
+    echo 'Run `composer update` to sync changes with your dependencies folder.' . PHP_EOL;
 }
