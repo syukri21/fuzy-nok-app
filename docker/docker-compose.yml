@@ -1,0 +1,27 @@
+version: "3.9"
+name: nok-admin-app
+services:
+  database:
+    container_name: database
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: superadmin
+      MYSQL_USER: fuzi
+      MYSQL_PASSWORD: fuzi123
+      MYSQL_DATABASE: nok
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/:/var/lib/mysql/
+    networks:
+      - internal
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 1s
+      timeout: 10s
+      retries: 5
+
+networks:
+  internal:
+    driver: bridge
