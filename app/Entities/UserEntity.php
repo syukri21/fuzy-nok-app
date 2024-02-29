@@ -23,6 +23,9 @@ class UserEntity extends Entity
     protected $attributes = [
         'id' => null,
         'username' => '',
+        'first_name' => '',
+        'last_name' => '',
+        'gender' => 'male',
         'email' => '',
         'password' => '',
         'nik' => '',

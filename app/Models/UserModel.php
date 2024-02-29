@@ -35,7 +35,10 @@ class UserModel extends Model implements FabricatorModel
     public function fake(Generator &$faker): UserEntity
     {
         return new UserEntity([
-            'username' => $faker->name,
+            'username' => $faker->userName(),
+            'first_name' => $faker->firstName(),
+            'last_name' => $faker->lastName(),
+            'gender' => $faker->randomElement(["male", "female"]),
             'email' => $faker->email,
             'password' => UserEntity::hash("operatorpwd"),
             'nik' => $faker->numerify('NOK-####'),
@@ -51,6 +54,9 @@ class UserModel extends Model implements FabricatorModel
         'email',
         'nik',
         'password',
+        'first_name',
+        'last_name',
+        'gender',
         'verify_at',
         'role'
     ];
