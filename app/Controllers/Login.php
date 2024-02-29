@@ -23,7 +23,7 @@ class Login extends BaseController
         try {
             $userEntity = $userModel->login($post['username'], $post['password']);
             return redirect()->to('/home')->with('user', $userEntity->toArray());
-        } catch (\ValidationException $e) {
+        } catch (\Exception $e) {
             log_message("error", $e->getMessage());
             return redirect()->back()->with('error', $e->getMessage());
         }
