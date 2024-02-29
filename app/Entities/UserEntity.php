@@ -44,10 +44,5 @@ class UserEntity extends Entity
         return password_hash($password, PASSWORD_BCRYPT, ['cost' => UserEntity::$cost]);
     }
 
-    public function setPassword(string $pass)
-    {
-        return UserEntity::hash($pass);
-    }
-
 
 }

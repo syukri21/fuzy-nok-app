@@ -4,10 +4,9 @@ namespace App\Models;
 
 use App\Entities\UserEntity;
 use CodeIgniter\Model;
-use CodeIgniter\Test\Interfaces\FabricatorModel;
 use Faker\Generator;
 
-class UserModel extends Model implements FabricatorModel
+class UserModel extends Model
 {
 
     /**
@@ -30,20 +29,6 @@ class UserModel extends Model implements FabricatorModel
     public function register(UserEntity $userEntity)
     {
 
-    }
-
-    public function fake(Generator &$faker): UserEntity
-    {
-        return new UserEntity([
-            'username' => $faker->userName(),
-            'first_name' => $faker->firstName(),
-            'last_name' => $faker->lastName(),
-            'gender' => $faker->randomElement(["male", "female"]),
-            'email' => $faker->email,
-            'password' => UserEntity::hash("operatorpwd"),
-            'nik' => $faker->numerify('NOK-####'),
-            'role' => $faker->randomElement(["admin", "user"]),
-        ]);
     }
 
     protected $table = 'users';
