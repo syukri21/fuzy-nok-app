@@ -45,4 +45,8 @@ class UserEntity extends Entity
     }
 
 
+    public function verify(string $password): bool
+    {
+        return password_verify($password, $this->attributes['password']);
+    }
 }

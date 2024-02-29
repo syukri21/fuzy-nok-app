@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Entities\UserEntity;
 use CodeIgniter\Model;
-use Faker\Generator;
+use http\Exception\InvalidArgumentException;
 
 class UserModel extends Model
 {
@@ -12,18 +12,16 @@ class UserModel extends Model
     /**
      * @throws \ValidationException
      */
-    public function login(string $username, string $password): UserEntity
+    public function login(string $username, string $password): array|object
     {
-        $userModel = $this->groupStart()->where(['email' => $username])->orWhere(['username' => $username])->orWhere(['nik' => $username])->groupEnd()->doFirst();
-        if ($userModel == null) {
-            throw new \ValidationException("Invalid username or password");
+        $user = $this->groupStart()->where(['email' => $username])->orWhere(['username' => $username])->orWhere(['nik' => $username])->groupEnd()->doFirst();
+        if ($user == null) {
+            throw new InvalidArgumentException("Invalid username or password");
         }
-
-        $hashPassword = UserEntity::hash($password);
-        if ($userModel['password'] !== $hashPassword) {
-            throw new \ValidationException("Invalid username or password");
+        if (!$user->verify($password)) {
+            throw new \InvalidArgumentException("Invalid username or password");
         }
-        return new UserEntity($userModel);
+        return $user;
     }
 
     public function register(UserEntity $userEntity)

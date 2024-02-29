@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Entities;
+
+use Throwable;
+
 class ValidationException extends \Exception
 {
     protected $code = 422;
