@@ -14,19 +14,28 @@ class UserRegistration extends Seeder
     public function run()
     {
         $faker = Factory::create("id_ID");
-        for ($i = 0; $i < 10; $i++) {
-            $userEntity = new UserEntity([
-                'username' => $faker->userName(),
-                'first_name' => $faker->firstName(),
-                'last_name' => $faker->lastName(),
-                'gender' => $faker->randomElement(["male", "female"]),
-                'email' => $faker->email,
-                'password' => UserEntity::hash("operatorpwd"),
-                'nik' => $faker->numerify('NOK-####'),
-                'role' => $faker->randomElement(["admin", "user"]),
-            ]);
-            $userModel = new UserModel();
-            $userModel->save($userEntity);
-        }
+        $userEntity = new UserEntity([
+            'username' => $faker->userName(),
+            'first_name' => $faker->firstName(),
+            'last_name' => $faker->lastName(),
+            'gender' => $faker->randomElement(["male", "female"]),
+            'email' => "superadmin@nok.com",
+            'password' => UserEntity::hash("adminpwd"),
+            'nik' => $faker->numerify('NOK-####'),
+            'role' => $faker->randomElement(["admin"]),
+        ]);
+        $userModel = new UserModel();
+         $userModel->save($userEntity);
+        $insertID = $userModel->getInsertID();
+
+        $userData = new \App\Entities\UserData([
+            'user_id' => $insertID,
+            'image' => $faker->imageUrl(640, 480),
+            'alamat' => $faker->address()
+        ]);
+
+        $userDataModel = new \App\Models\UserData();
+        $userDataModel->save($userData);
+
     }
 }
