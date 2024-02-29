@@ -4,8 +4,10 @@ namespace App\Models;
 
 use App\Entities\UserEntity;
 use CodeIgniter\Model;
+use CodeIgniter\Test\Interfaces\FabricatorModel;
+use Faker\Generator;
 
-class UserModel extends Model
+class UserModel extends Model implements FabricatorModel
 {
 
     /**
@@ -23,6 +25,22 @@ class UserModel extends Model
             throw new \ValidationException("Invalid username or password");
         }
         return new UserEntity($userModel);
+    }
+
+    public function register(UserEntity $userEntity)
+    {
+
+    }
+
+    public function fake(Generator &$faker): UserEntity
+    {
+        return new UserEntity([
+            'username' => $faker->name,
+            'email' => $faker->email,
+            'password' => UserEntity::hash("operatorpwd"),
+            'nik' => $faker->numerify('NOK-####'),
+            'role' => $faker->randomElement(["admin", "user"]),
+        ]);
     }
 
     protected $table = 'users';
