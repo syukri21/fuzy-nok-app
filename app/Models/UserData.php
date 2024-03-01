@@ -17,6 +17,7 @@ class UserData extends Model
         'user_id',
         'image',
         'alamat',
+        'phone',
     ];
 
     protected bool $allowEmptyInserts = false;

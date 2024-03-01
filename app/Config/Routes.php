@@ -13,3 +13,8 @@ $routes->get('/admin', 'Home::adminHome');
 $routes->get('/login', 'AuthController::index');
 $routes->post('/login', 'AuthController::login');
 $routes->post('/logout', 'AuthController::logout');
+
+// Operator
+$routes->get('/operator', 'OperatorController::index');
+$routes->get('/operator/add', 'OperatorController::add');
+$routes->post('/operator/add', 'OperatorController::store');

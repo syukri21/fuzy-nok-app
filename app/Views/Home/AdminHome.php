@@ -7,6 +7,11 @@
         <h6 class="m-0 font-weight-bold text-primary">Tabel Operator</h6>
     </div>
     <div class="card-body">
+        <!--  add operator-->
+        <div class="mb-4 d-flex justify-content-end">
+            <a href="/operator/add" class="btn btn-primary " role="button">
+                <i class="fas fa-plus mr-2"></i> Tambah Operator </a>
+        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>

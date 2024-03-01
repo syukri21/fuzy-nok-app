@@ -14,6 +14,7 @@ class UserData extends Entity
         'user_id' => null,
         'image' => null,
         'alamat' => null,
+        'phone' => null,
         'created_at' => null,
         'updated_at' => null,
     ];
