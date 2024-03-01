@@ -1,4 +1,4 @@
-<?php //dd($pager->getCurrentPageNumber()) ?>
+<?php /** @var object $pager */ ?>
 <div>
     <!--    simple pager-->
     <nav aria-label="Page navigation example">
