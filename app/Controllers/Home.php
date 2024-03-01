@@ -13,15 +13,19 @@ class Home extends BaseController
 
     public function adminHome(): string
     {
-        $page = $this->request->getGet('page');
+        $page = $this->request->getGet('page_operator');
         if (!isset($page)) {
             $page = 1;
         }
         $userModel = new  UserData();
-        $paginate = $userModel->join('users', 'users.id = user_datas.user_id')->paginate(20, 'operator', $page);
+        $perPage = 20;
+        $paginate = $userModel->join('users', 'users.id = user_datas.user_id')->where("role", "operator")->orderBy("first_name", "ASC")->paginate($perPage, 'operator', $page);
         return view('Home/AdminHome', [
             'data' => $paginate,
-            'pager' => $userModel->pager
+            'pager' => $userModel->pager,
+            'perPage' => $perPage,
+            'page' => $page,
+            'count' => $userModel->join("users", "users.id = user_datas.user_id", "left")->where("role", "operator")->countAllResults(),
         ]);
     }
 }

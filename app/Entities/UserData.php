@@ -16,6 +16,5 @@ class UserData extends Entity
         'alamat' => null,
         'created_at' => null,
         'updated_at' => null,
-        'verify_at' => null
     ];
 }
