@@ -9,7 +9,7 @@ use CodeIgniter\Database\Seeder;
 use Faker\Factory;
 
 
-class UserRegistration extends Seeder
+class AdminRegistration extends Seeder
 {
     public function run()
     {
@@ -25,17 +25,14 @@ class UserRegistration extends Seeder
             'role' => $faker->randomElement(["admin"]),
         ]);
         $userModel = new UserModel();
-         $userModel->save($userEntity);
+        $userModel->save($userEntity);
         $insertID = $userModel->getInsertID();
-
         $userData = new \App\Entities\UserData([
             'user_id' => $insertID,
             'image' => $faker->imageUrl(640, 480),
             'alamat' => $faker->address()
         ]);
-
         $userDataModel = new \App\Models\UserData();
         $userDataModel->save($userData);
-
     }
 }
