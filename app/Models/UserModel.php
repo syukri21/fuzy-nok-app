@@ -21,6 +21,7 @@ class UserModel extends Model
         if (!$user->verify($password)) {
             throw new \InvalidArgumentException("Invalid username or password");
         }
+        session()->set("role", $user->role);
         session()->set("user", $user);
         return $user;
     }

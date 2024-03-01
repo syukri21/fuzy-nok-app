@@ -7,13 +7,12 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
-class Login extends BaseController
+class AuthController extends BaseController
 {
     public function index(): string
     {
         return view('Login/Login');
     }
-
 
     public function login(): RedirectResponse
     {
@@ -22,6 +21,9 @@ class Login extends BaseController
         log_message("info", print_r($post, true));
         try {
             $userEntity = $userModel->login($post['username'], $post['password']);
+            if ($userEntity->role == "admin") {
+                return redirect()->to('/admin')->with('user', $userEntity->toArray());
+            }
             return redirect()->to('/home')->with('user', $userEntity->toArray());
         } catch (\Exception $e) {
             $message = "username / password salah";
@@ -37,5 +39,4 @@ class Login extends BaseController
         $userModel->logout();
         return redirect()->to("/login");
     }
-
 }
