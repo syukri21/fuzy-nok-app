@@ -21,7 +21,6 @@
                     <th>Nama</th>
                     <th>NIK</th>
                     <th>Email</th>
-                    <th>Alamat</th>
                     <th>Phone</th>
                     <th>Action</th>
                 </tr>
@@ -31,20 +30,30 @@
                     <th>Nama</th>
                     <th>NIK</th>
                     <th>Email</th>
-                    <th>Alamat</th>
                     <th>Phone</th>
                     <th>Action</th>
                 </tr>
                 </tfoot>
                 <tbody>
-                <tr>
-                    <td>Tiger Nixon</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                </tr>
+                <?php /** @var array $data */
+                foreach ($data as $datum) : ?>
+                    <tr>
+                        <td><?= $datum->first_name ?> <?= $datum->last_name ?></td>
+                        <td><?= $datum->nik ?></td>
+                        <td><?= $datum->email ?></td>
+                        <td><?= $datum->phone ?></td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-circle btn-sm">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a href="#" class="btn btn-danger btn-circle btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+
+                    </tr>
+                <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>

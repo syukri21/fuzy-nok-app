@@ -9,12 +9,11 @@ class UserData extends Entity
     protected $datamap = [];
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
     protected $casts = [];
-
     protected $attributes = [
         'id' => null,
-        'user_id' => '',
-        'image' => '',
-        'alamat' => '',
+        'user_id' => null,
+        'image' => null,
+        'alamat' => null,
         'created_at' => null,
         'updated_at' => null,
         'verify_at' => null
