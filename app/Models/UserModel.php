@@ -21,7 +21,13 @@ class UserModel extends Model
         if (!$user->verify($password)) {
             throw new \InvalidArgumentException("Invalid username or password");
         }
+        session()->set("user", $user);
         return $user;
+    }
+
+    public function logout()
+    {
+        session()->destroy();
     }
 
     public function register(UserEntity $userEntity)

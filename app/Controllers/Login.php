@@ -24,9 +24,18 @@ class Login extends BaseController
             $userEntity = $userModel->login($post['username'], $post['password']);
             return redirect()->to('/home')->with('user', $userEntity->toArray());
         } catch (\Exception $e) {
+            $message = "username / password salah";
             log_message("error", $e->getMessage());
-            return redirect()->back()->with('error', $e->getMessage());
+            session()->setFlashdata('error', $message);
+            return redirect()->back()->with('error', $message);
         }
+    }
+
+    public function logout(): RedirectResponse
+    {
+        $userModel = new UserModel();
+        $userModel->logout();
+        return redirect()->to("/login");
     }
 
 }

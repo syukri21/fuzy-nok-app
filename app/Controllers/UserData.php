@@ -11,7 +11,5 @@ class UserData extends BaseController
     public function index()
     {
         //
-
-
     }
 }
