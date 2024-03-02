@@ -22,7 +22,7 @@ class UserModel extends Model
             throw new \InvalidArgumentException("Invalid username or password");
         }
         session()->set("role", $user->role);
-        session()->set("user", $user);
+        session()->set("data", $user->toArray());
         return $user;
     }
 

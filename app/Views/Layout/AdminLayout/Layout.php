@@ -13,15 +13,6 @@
             <div class="sidebar-brand-text mx-3">NOK Admin</div>
         </a>
 
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -33,11 +24,21 @@
 
         <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="#" >
+            <a class="nav-link" href="/operator">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Operator</span>
             </a>
         </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Produksi
+        </div>
+
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
@@ -241,7 +242,7 @@
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get("data")['first_name'] . " " . session()->get("data")['last_name'] ?></span>
                             <img class="img-profile rounded-circle"
                                  src="<?= base_url() ?>dependencies/img/undraw_profile.svg">
                         </a>
