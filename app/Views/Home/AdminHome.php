@@ -21,18 +21,19 @@
 <?php endif; ?>
 
 
-<div class="card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Tabel Operator</h6>
+<div class="card shadow mb-4 ">
+    <div class="card-header d-flex justify-content-between align-items-center ">
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Operator</h6>
+
+        <div class="d-flex justify-content-end align-content-center align-items-center ">
+            <a href="/operator/add" class="btn btn-primary " role="button">
+                <i class="fas fa-plus mr-2"></i> Tambah Operator </a>
+        </div>
     </div>
 
     <div class="card-body">
         <!--  add operator-->
-        <div class="mb-4 d-flex justify-content-end align-content-center align-items-center">
-            <a href="/operator/add" class="btn btn-primary " role="button">
-                <i class="fas fa-plus mr-2"></i> Tambah Operator </a>
 
-        </div>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
