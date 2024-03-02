@@ -10,7 +10,7 @@ class UserData extends Model
     protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $returnType = \App\Entities\UserData::class;
-    protected $useSoftDeletes = false;
+    protected $useSoftDeletes = true;
     protected $protectFields = true;
     protected $allowedFields = [
         'id',
@@ -18,6 +18,7 @@ class UserData extends Model
         'image',
         'alamat',
         'phone',
+        'deleted_at'
     ];
 
     protected bool $allowEmptyInserts = false;

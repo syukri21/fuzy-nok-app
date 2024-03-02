@@ -48,7 +48,8 @@ class UserModel extends Model
         'last_name',
         'gender',
         'verify_at',
-        'role'
+        'role',
+        'deleted_at'
     ];
     protected $useAutoIncrement = true;
     protected $returnType = UserEntity::class;

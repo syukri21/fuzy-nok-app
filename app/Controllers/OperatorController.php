@@ -130,4 +130,15 @@ class OperatorController extends BaseController
 
         return redirect()->to('/admin')->with("success", "Data updated");
     }
+
+    public function delete(int $id): RedirectResponse
+    {
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+        if (empty($user)) {
+            return redirect()->to('/admin')->with('error', "Data not found");
+        }
+        $userModel->where("id", $id)->delete($id, true);
+        return redirect()->to('/admin')->with("success", "Data deleted");
+    }
 }
