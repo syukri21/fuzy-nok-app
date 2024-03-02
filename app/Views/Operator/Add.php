@@ -4,7 +4,7 @@
 <div>
     <!--    add operator -->
     <div class="mb-4 d-flex justify-content-end">
-        <a href="/operator" class="btn btn-primary " role="button">
+        <a href="/admin" class="btn btn-primary " role="button">
             <i class="fas fa-arrow-left mr-2"></i> Kembali </a>
     </div>
     <div class="card shadow mb-4">
