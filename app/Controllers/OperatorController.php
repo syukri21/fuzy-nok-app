@@ -46,4 +46,88 @@ class OperatorController extends BaseController
 
         return redirect()->to('/admin');
     }
+
+    public function edit(int $id): string|RedirectResponse
+    {
+        $userModel = new UserModel();
+        $userDataModel = new \App\Models\UserData();
+        $user = $userModel->find($id)->toArray();
+        $userData = $userDataModel->where('user_id', $id)->first()->toArray();
+
+        if (empty($user) || empty($userData)) {
+            return redirect()->to('/admin');
+        }
+
+        $operator = [];
+        foreach ($user as $key => $item) {
+            if ($key == 'password') continue;
+            $operator[$key] = $item;
+        }
+
+        foreach ($userData as $key => $userDatum) {
+            $operator[$key] = $userDatum;
+        }
+
+        return view('Operator/Edit', [
+            'operator' => $operator,
+        ]);
+    }
+
+    public function update(int $id): RedirectResponse
+    {
+
+        $post = $this->request->getPost();
+
+
+        $userModel = new UserModel();
+        $user = $userModel->find($id);
+        if (empty($user)) {
+            return redirect()->to('/admin');
+        }
+
+        if ($post['password'] != "default") {
+            $post['password'] = UserEntity::hash($post['password']);
+        } else {
+            unset($post['password']);
+        }
+
+        $userDataModel = new \App\Models\UserData();
+        $userData = $userDataModel->where('user_id', $user->id)->first();
+        if (empty($userData)) {
+            return redirect()->to('/admin');
+        }
+
+        $arr = [
+            'email' => $post['email'],
+            'first_name' => $post['first_name'],
+            'last_name' => $post['last_name'],
+            'nik' => $post['nik'],
+            'username' => $post['username'],
+        ];
+
+        if (!empty($post['password'])) {
+            $arr['password'] = UserEntity::hash($post['password']);
+        }
+
+        $user = $user->fill($arr);
+        $userData = $userData->fill([
+            'phone' => $post['phone'],
+            'alamat' => $post['alamat'],
+        ]);
+
+        if (!$user->hasChanged() && !$userData->hasChanged()) {
+            log_message("info", "No changes");
+            return redirect()->to('/operator/edit/' . $id)->with('error', "No changes");
+        }
+
+        try {
+            if ($user->hasChanged()) $userModel->update($id, $user);
+            if ($userData->hasChanged()) $userDataModel->update($userData->id, $userData);
+        } catch (\Exception $e) {
+            log_message("error", $e->getMessage());
+            return redirect()->to('/operator/edit/' . $id)->with('error', $e->getMessage());
+        }
+
+        return redirect()->to('/admin')->with("success", "Data updated");
+    }
 }
