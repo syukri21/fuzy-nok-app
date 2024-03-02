@@ -22,3 +22,11 @@ $routes->post('/operator/add', 'OperatorController::store');
 $routes->get('/operator/edit/(:any)', 'OperatorController::edit/$1');
 $routes->post('/operator/edit/(:any)', 'OperatorController::update/$1');
 $routes->get('/operator/delete/(:any)', 'OperatorController::delete/$1');
+
+// Machine
+$routes->get('/machine', 'MachineController::index');
+$routes->get('/machine/add', 'MachineController::add');
+$routes->post('/machine/add', 'MachineController::store');
+$routes->get('/machine/edit/(:any)', 'MachineController::edit/$1');
+$routes->post('/machine/edit/(:any)', 'MachineController::update/$1');
+$routes->get('/machine/delete/(:any)', 'MachineController::delete/$1');

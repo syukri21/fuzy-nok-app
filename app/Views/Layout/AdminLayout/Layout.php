@@ -42,7 +42,7 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/machine">
                 <i class="fas fa-fw fa-laptop"></i>
                 <span>Mesin</span>
             </a>
