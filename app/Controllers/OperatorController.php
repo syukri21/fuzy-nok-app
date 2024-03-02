@@ -44,7 +44,7 @@ class OperatorController extends BaseController
             return redirect()->to('/operator/add')->with('error', $e->getMessage());
         }
 
-        return redirect()->to('/admin');
+        return redirect()->to('/admin')->with('success', $post['first_name'] . ' ' . $post['last_name'] . ' added');
     }
 
     public function edit(int $id): string|RedirectResponse
