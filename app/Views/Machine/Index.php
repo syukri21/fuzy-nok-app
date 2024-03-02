@@ -104,5 +104,20 @@
             </div>
         </div>
     </div>
+    <!--    js modal-->
+    <script>
+        window.onload = function () {
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var name = button.data('name')
+                var modal = $(this)
+                modal.find('.modal-title #delete-name').text(name)
+                modal.find('.modal-footer a').attr('href', '/machine/delete/' + id)
+            })
+        }
+    </script>
+
+
 
 <?= $this->endSection() ?>
