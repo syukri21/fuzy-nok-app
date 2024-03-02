@@ -30,3 +30,6 @@ $routes->post('/machine/add', 'MachineController::store');
 $routes->get('/machine/edit/(:any)', 'MachineController::edit/$1');
 $routes->post('/machine/edit/(:any)', 'MachineController::update/$1');
 $routes->get('/machine/delete/(:any)', 'MachineController::delete/$1');
+
+// QR
+$routes->get('/qr/generate/(:any)', 'QRController::generate/$1');

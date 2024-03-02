@@ -1,3 +1,8 @@
+<?php
+
+use chillerlan\QRCode\QRCode;
+
+?>
 <?= $this->extend('Layout/AdminLayout/Layout') ?>
 
 <?= $this->section('content') ?>
@@ -40,10 +45,14 @@
                     <label class="col-2 col-form-label" for="qr_path">QR Path</label>
                     <input type="text" class="form-control col-sm-8 rounded-0" id="qr_path" name="qr_path"
                            value="<?= $data['qr_path'] ?>">
-                    <button class
-                            ="btn btn-secondary col-sm-2 rounded-0">Generate QR
+                    <button class="btn btn-secondary col-sm-2 rounded-0" type="button" id="generate-qr">Generate QR
                     </button>
                 </div>
+
+                <div id="qr-container" class="d-flex justify-content-center align-items-center">
+                    <?= '<img style="width: 250px;" id="qr" src="' . (new QRCode)->render($data['qr_text']) . '" alt="QR Code" />' ?>
+                </div>
+
                 <div class="form-group row">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -51,6 +60,25 @@
                 </div>
             </form>
         </div>
+        <script>
+            window.onload = function () {
+                $("#generate-qr").click(function () {
+                    const text = $("#qr_text").val();
+                    const relPath = "qr/generate/" + encodeURI(text);
+                    const url = "<?= base_url() ?>" + relPath;
+                    $.ajax({
+                        type: "GET",
+                        url: url,
+                        success: function (data) {
+                            console.log(data)
+                            $("#qr-container")
+                            $("#qr").attr("src", data);
+                            $("#qr_path").val(relPath)
+                        }
+                    });
+                })
+            }
+        </script>
     </div>
 
 <?= $this->endSection() ?>
