@@ -11,21 +11,12 @@ class MachineMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'INT',
+                'type' => 'BIGINT',
                 'constraint' => 11,
                 'unsigned' => true,
                 'auto_increment' => true
             ],
             'name' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255,
-                'null' => false
-            ],
-            'qr_text' => [
-                'type' => 'TEXT',
-                'null' => false
-            ],
-            'qr_path' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255,
                 'null' => false

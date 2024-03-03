@@ -5,13 +5,10 @@ namespace App\Database\Migrations;
 use CodeIgniter\Database\Migration;
 use CodeIgniter\Database\RawSql;
 
-class UserData extends Migration
+class QRDataMigration extends Migration
 {
-    private $tableName = "user_datas";
-
     public function up()
     {
-
         $this->forge->addField([
             'id' => [
                 'type' => 'BIGINT',
@@ -19,18 +16,21 @@ class UserData extends Migration
                 'unsigned' => true,
                 'auto_increment' => true
             ],
-            'user_id' => [
+            'code' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100
+            ],
+            'relation_id' => [
                 'type' => 'BIGINT',
                 'constraint' => 11,
-                'unsigned' => true,
             ],
-            'image' => [
-                'type' => 'TEXT',
+            'data' => [
+                'type' => 'JSON',
                 'null' => true
             ],
-            'alamat' => [
-                'type' => 'TEXT',
-                'null' => true
+            'type' => [
+                'type' => 'ENUM',
+                'constraint' => ['machine', 'seal']
             ],
             'created_at' => [
                 'type' => 'TIMESTAMP',
@@ -45,14 +45,17 @@ class UserData extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addPrimaryKey("id", "user_datas__id");
-        $this->forge->addForeignKey("user_id", "users", "id", "CASCADE", "CASCADE");
-        $this->forge->createTable($this->tableName);
-
+        $this->forge->addPrimaryKey("id", "qrdatas__id");
+        $this->forge->addUniqueKey(["code"], "qrdatas__code");
+        $this->forge->addKey("type", false, false, "qrdatas__type");
+        $this->forge->createTable("qrdatas");
     }
 
     public function down()
     {
-        $this->forge->dropTable($this->tableName);
+        $this->forge->dropKey("qrdatas", "qrdatas__type");
+        $this->forge->dropKey("qrdatas", "qrdatas__code");
+        $this->forge->dropKey("qrdatas", "qrdatas__id");
+        $this->forge->dropTable("qrdatas");
     }
 }
