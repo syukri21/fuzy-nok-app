@@ -124,32 +124,22 @@
                         <label class="col-form-label col-sm-2 text-dark" for="image">Image</label>
                         <div class="col-sm-10 row">
                             <?php $image = isset($operator['image']) && strlen($operator['image']) > 0 ? $operator['image'] : 'no-image.png'; ?>
-                            <img src="<?= base_url() . 'uploads/' . $image ?>"
-                                 id="image-preview"
-                                 class="rounded mx-auto d-block col-sm-6" width="200" height="200"
-                                 alt="no image">
-                            <input type="file" accept="image/jpeg, image/png, image/jpg"
-                                   class="form-control-file col-sm-6"
-                                   id="image">
+                            <div class="rounded mx-auto d-block col-sm-6">
+                                <img src="<?= base_url() . $image ?>"
+                                     id="image-preview"
+                                     width="200px"
+                                     alt="no image">
+                            </div>
+
+                            <div>
+                                <input type="file" accept="image/jpeg, image/png, image/jpg"
+                                       class="form-control-file"
+                                       id="image">
+                                <button class="btn btn-primary mt-2" disabled type="button" id="upload-image">Upload
+                                </button>
+                            </div>
+
                         </div>
-                        <script>
-                            function readURL(input) {
-                                const files = input.target.files;
-                                if (files && files[0]) {
-                                    const reader = new FileReader();
-                                    reader.onload = function (e) {
-                                        $('#image-preview').attr('src', e.target.result);
-                                    };
-                                    reader.readAsDataURL(files[0]);
-                                }
-                            }
-
-                            // change do not use jquery
-                            document.getElementById("image").addEventListener("change", function (e) {
-                                readURL(e);
-                            })
-
-                        </script>
                     </div>
 
                     <div class="d-flex justify-content-end">
@@ -159,6 +149,77 @@
 
             </div>
         </div>
-
     </div>
+
+    <!--    modal success and error upload -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog"
+         aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="uploadModalLabel"">Upload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="upload-text">Image uploaded successfully</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function onUploadImage() {
+            const uploadImage = $("#upload-image");
+            uploadImage.removeAttr("disabled")
+            uploadImage.on("click", function () {
+                const val = $("#image")[0].files;
+                console.log(val)
+                const formData = new FormData();
+                formData.append('image', val[0]);
+                console.log("asd")
+                $.ajax({
+                    url: "<?= base_url() . '/operator/upload-image/' . $operator['id'] ?>",
+                    type: "POST",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function () {
+                        $("#uploadModal").modal('show')
+                        $("#upload-text").removeClass("text-danger").addClass("text-success").text("Image uploaded successfully")
+                    },
+                    error: function (data) {
+                        $("#uploadModal").modal('show')
+                        $("#upload-text").removeClass("text-success").addClass("text-danger").text("Image upload failed")
+                    }
+                })
+            })
+        }
+
+        window.onload = function () {
+            onUploadImage()
+        };
+
+        function readURL(input) {
+            const files = input.target.files;
+            if (files && files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#image-preview').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        }
+
+        // change do not use jquery
+        document.getElementById("image").addEventListener("change", function (e) {
+            readURL(e);
+        })
+
+    </script>
 <?= $this->endSection() ?>

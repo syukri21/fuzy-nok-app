@@ -141,4 +141,46 @@ class OperatorController extends BaseController
         $userModel->where("id", $id)->delete($id, true);
         return redirect()->to('/admin')->with("success", "Data deleted");
     }
+
+    public function uploadImage($userId): bool|string|RedirectResponse
+    {
+        $session = session()->get("data");
+        if ($session['role'] == "operator" && $session['id'] != $userId) {
+            return json_encode([
+                'success' => false,
+                'message' => 'Unauthorized',
+            ]);
+        }
+        try {
+            $userDataModel = new \App\Models\UserData();
+            $user = $userDataModel->find($userId);
+            if (empty($user)) {
+                return json_encode([
+                    'success' => false,
+                    'message' => 'Unauthorized',
+                ]);
+            }
+
+            $image = $this->request->getFile('image');
+            $relPath = 'uploads/' . $image->store();
+            $user->image = $relPath;
+            if ($user->hasChanged()) {
+                $userDataModel->save($user);
+            }
+
+            return json_encode([
+                'success' => true,
+                'message' => 'Success',
+            ]);
+
+        } catch (\Exception $e) {
+            log_message("error", $e->getMessage());
+            return json_encode([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+
+    }
+
 }

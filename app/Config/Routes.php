@@ -22,6 +22,7 @@ $routes->post('/operator/add', 'OperatorController::store');
 $routes->get('/operator/edit/(:any)', 'OperatorController::edit/$1');
 $routes->post('/operator/edit/(:any)', 'OperatorController::update/$1');
 $routes->get('/operator/delete/(:any)', 'OperatorController::delete/$1');
+$routes->post('/operator/upload-image/(:any)', 'OperatorController::uploadImage/$1');
 
 // Machine
 $routes->get('/machine', 'MachineController::index');
