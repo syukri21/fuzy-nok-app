@@ -12,19 +12,16 @@ class MachineSeeder extends Seeder
 
         $data = [
             [
-                'name' => 'Machine 1',
-                'qr_text' => 'Machine 1',
-                'qr_path' => 'Machine 1',
+                'name' => '522 A',
+                'description' => 'Mesin curing 522 A',
             ],
             [
-                'name' => 'Machine 2',
-                'qr_text' => 'Machine 2',
-                'qr_path' => 'Machine 2',
+                'name' => '523 B',
+                'description' => 'Mesin curing 523 B',
             ],
             [
-                'name' => 'Machine 3',
-                'qr_text' => 'Machine 3',
-                'qr_path' => 'Machine 3',
+                'name' => '500 C',
+                'description' => 'Mesin curing 500 C',
             ],
         ];
 
