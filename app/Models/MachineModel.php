@@ -15,8 +15,8 @@ class MachineModel extends Model
     protected $protectFields = true;
     protected $allowedFields = [
         'name',
-        'qr_text',
-        'qr_path'
+        'description',
+        'qr_url'
     ];
 
     protected bool $allowEmptyInserts = false;

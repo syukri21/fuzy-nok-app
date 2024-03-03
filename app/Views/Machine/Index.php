@@ -41,9 +41,8 @@
                     <thead>
                     <tr>
                         <th>Name</th>
-                        <th>QR Text</th>
-                        <th>QR Path</th>
-                        <th>Created At</th>
+                        <th>Description</th>
+                        <th>QR URL</th>
                         <th>Updated At</th>
                         <th class="d-flex justify-content-center">Action</th>
                     </tr>
@@ -51,9 +50,8 @@
                     <tfoot>
                     <tr>
                         <th>Name</th>
-                        <th>QR Text</th>
-                        <th>QR Path</th>
-                        <th>Created At</th>
+                        <th>Description</th>
+                        <th>QR URL</th>
                         <th>Updated At</th>
                         <th class="d-flex justify-content-center">Action</th>
                     </tr>
@@ -63,8 +61,8 @@
                     foreach ($data as $datum) : ?>
                         <tr>
                             <td><?= $datum->name ?></td>
-                            <td><?= $datum->qr_text ?></td>
-                            <td><?= $datum->qr_path ?></td>
+                            <td><?= $datum->description ?></td>
+                            <td><?= $datum->qr_url ?></td>
                             <td><?= $datum->created_at->humanize() ?></td>
                             <td><?= $datum->updated_at->humanize() ?></td>
                             <td class="d-flex justify-content-around">

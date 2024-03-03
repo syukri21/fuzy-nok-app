@@ -31,8 +31,8 @@ class MachineController extends BaseController
         try {
             $data = [
                 'name' => $this->request->getPost('name'),
-                'qr_text' => $this->request->getPost('qr_text'),
-                'qr_path' => $this->request->getPost('qr_path'),
+                'description' => $this->request->getPost('description'),
+                'qr_url' => $this->request->getPost('qr_url'),
             ];
             $machineModel = new MachineModel();
             $machineModel->save($data);
@@ -58,8 +58,8 @@ class MachineController extends BaseController
         try {
             $data = [
                 'name' => $this->request->getPost('name'),
-                'qr_text' => $this->request->getPost('qr_text'),
-                'qr_path' => $this->request->getPost('qr_path'),
+                'description' => $this->request->getPost('description'),
+                'qr_url' => $this->request->getPost('qr_url'),
             ];
             $machineModel = new MachineModel();
             $machineModel->update($id, $data);
