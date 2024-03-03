@@ -3,12 +3,24 @@
 namespace App\Controllers;
 
 use App\Models\UserData;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class Home extends BaseController
 {
-    public function index(): string
+    public function index(): RedirectResponse|string
     {
-        return view('Home/Home');
+        $data = session()->get('data');
+        if (empty($data)) {
+            return redirect()->to('/login');
+        }
+
+        $userDataModel = new UserData();
+        $userData = $userDataModel->where("user_id", $data['id'])->first();
+
+        return view('Home/Home', [
+            'userData' => $userData,
+            'user' => $data,
+        ]);
     }
 
     public function adminHome(): string
