@@ -2,6 +2,9 @@
 
 use chillerlan\QRCode\QRCode;
 
+
+/** @var array $data */
+
 ?>
 <?= $this->extend('Layout/AdminLayout/Layout') ?>
 
