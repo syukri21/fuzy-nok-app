@@ -71,6 +71,7 @@
     <!--    js chart-->
     <script src="<?= base_url() ?>dependencies/chart.js/chart.js"></script>
     <script>
+
         var ctx = document.getElementById("chartProduksi").getContext('2d');
 
         var myChart = new Chart(ctx, {
@@ -80,14 +81,13 @@
                 datasets: [{
                     label: 'Produksi',
                     data: [12, 19, 3, 5, 2, 3, 10],
-                    borderWidth: 1,
+                    tension:0.3
                 }],
             },
 
-
             // Configuration options go here
             options: {
-
+                responsive: true,
             },
         });
     </script>
