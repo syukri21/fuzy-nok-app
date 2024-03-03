@@ -17,10 +17,10 @@ class AuthController extends BaseController
     public function login(): RedirectResponse
     {
         $userModel = new UserModel();
-        $post = $this->request->getPost(['username', 'password']);
+        $post = $this->request->getPost(['nik', 'password']);
         log_message("info", print_r($post, true));
         try {
-            $userEntity = $userModel->login($post['username'], $post['password']);
+            $userEntity = $userModel->login($post['nik'], $post['password']);
             if ($userEntity->role == "admin") {
                 return redirect()->to('/admin')->with('user', $userEntity->toArray());
             }
