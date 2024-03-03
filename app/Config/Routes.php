@@ -32,4 +32,13 @@ $routes->post('/machine/edit/(:any)', 'MachineController::update/$1');
 $routes->get('/machine/delete/(:any)', 'MachineController::delete/$1');
 
 // QR
-$routes->get('/qr/generate/(:any)', 'QRController::generate/$1');
+$routes->post('/qr/generate', 'QRController::generate');
+
+// qr
+$routes->get('/qr', 'QRDataController::index');
+$routes->get('/qr/add', 'QRDataController::add');
+$routes->post('/qr/add', 'QRDataController::store');
+$routes->get('/qr/edit/(:any)', 'QRDataController::edit/$1');
+$routes->post('/qr/edit/(:any)', 'QRDataController::update/$1');
+$routes->get('/qr/delete/(:any)', 'QRDataController::delete/$1');
+$routes->get("/api/qr/(:any)", "QRDataController::showQrData/$1");

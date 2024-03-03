@@ -20,10 +20,6 @@ class QRDataMigration extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 100
             ],
-            'relation_id' => [
-                'type' => 'BIGINT',
-                'constraint' => 11,
-            ],
             'data' => [
                 'type' => 'JSON',
                 'null' => true

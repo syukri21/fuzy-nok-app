@@ -40,9 +40,9 @@ use chillerlan\QRCode\QRCode;
                 <!--                qr text -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label " for="description">Description</label>
-                    <textarea type="text" class="form-control col-sm-10" id="description"
+                    <input type="text" class="form-control col-sm-10" id="description"
                               name="description"
-                              value="<?= $data['description'] ?>"></textarea>
+                              value="<?= $data['description'] ?>"></input>
                 </div>
                 <!--                qr path -->
                 <div class="form-group row">

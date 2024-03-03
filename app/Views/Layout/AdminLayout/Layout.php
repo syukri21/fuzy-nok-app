@@ -50,9 +50,9 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="#">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Oil Seal</span>
+            <a class="nav-link" href="/qr">
+                <i class="fas fa-fw fa-qrcode"></i>
+                <span>QR</span>
             </a>
         </li>
 

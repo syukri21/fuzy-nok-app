@@ -43,8 +43,8 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>QR URL</th>
-                        <th>Updated At</th>
                         <th>Created At</th>
+                        <th>Updated At</th>
                         <th class="d-flex justify-content-center">Action</th>
                     </tr>
                     </thead>
@@ -53,8 +53,8 @@
                         <th>Name</th>
                         <th>Description</th>
                         <th>QR URL</th>
-                        <th>Updated At</th>
                         <th>Created At</th>
+                        <th>Updated At</th>
                         <th class="d-flex justify-content-center">Action</th>
                     </tr>
                     </tfoot>

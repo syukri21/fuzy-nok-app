@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\QR;
 use CodeIgniter\Model;
 
 class QRDataModel extends Model
@@ -9,10 +10,14 @@ class QRDataModel extends Model
     protected $table            = 'qrdatas';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
+    protected $returnType       = QR::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields = [
+        'code',
+        'type',
+        'data',
+    ];
 
     protected bool $allowEmptyInserts = false;
 
