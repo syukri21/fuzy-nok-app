@@ -64,7 +64,7 @@
                         <tr>
                             <td><?= $datum->name ?></td>
                             <td><?= $datum->description ?></td>
-                            <td><?= $datum->qr_url ?></td>
+                            <td><?= $datum->qr ?></td>
                             <td><?= $datum->created_at->humanize() ?></td>
                             <td><?= $datum->updated_at->humanize() ?></td>
                             <td class="d-flex justify-content-around">

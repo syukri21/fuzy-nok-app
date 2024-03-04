@@ -20,6 +20,7 @@ class Home extends BaseController
         return view('Home/Home', [
             'userData' => $userData,
             'user' => $data,
+            'title' => "NOK"
         ]);
     }
 

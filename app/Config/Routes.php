@@ -43,3 +43,12 @@ $routes->get('/qr/edit/(:any)', 'QRDataController::edit/$1');
 $routes->post('/qr/edit/(:any)', 'QRDataController::update/$1');
 $routes->get('/qr/delete/(:any)', 'QRDataController::delete/$1');
 $routes->get("/api/qr/(:any)", "QRDataController::showQrData/$1");
+$routes->get("/qr/scan", "QRDataController::scan");
+
+// production
+$routes->get('/production', 'ProductionController::index');
+$routes->get('/production/add', 'ProductionController::add');
+$routes->post('/production/add', 'ProductionController::store');
+$routes->get('/production/edit/(:any)', 'ProductionController::edit/$1');
+$routes->post('/production/edit/(:any)', 'ProductionController::update/$1');
+$routes->get('/production/delete/(:any)', 'ProductionController::delete/$1');

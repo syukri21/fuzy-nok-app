@@ -47,14 +47,14 @@ use chillerlan\QRCode\QRCode;
                 <!--                qr path -->
                 <div class="form-group row">
                     <label class="col-2 col-form-label" for="qr_path">QR Path</label>
-                    <input type="text" class="form-control col-sm-8 rounded-0" id="qr_url" name="qr_url"
-                           value="<?= $data['qr_url'] ?>">
+                    <input type="text" class="form-control col-sm-8 rounded-0" id="qr" name="qr_url"
+                           value="<?= $data['qr'] ?>">
                     <button class="btn btn-secondary col-sm-2 rounded-0" type="button" id="generate-qr">Generate QR
                     </button>
                 </div>
 
                 <div id="qr-container" class="d-flex justify-content-center align-items-center">
-                    <?= '<img style="width: 250px;" id="qr" src="' . (new QRCode)->render($data['qr_url']) . '" alt="QR Code" />' ?>
+                    <?= '<img style="width: 250px;" id="qr" src="' . (new QRCode)->render($data['qr']) . '" alt="QR Code" />' ?>
                 </div>
 
                 <div class="form-group row">

@@ -2,8 +2,8 @@
 
 namespace App\Controllers;
 
-use App\Models\QRDataModel;
 use chillerlan\QRCode\QRCode;
+use CodeIgniter\HTTP\RedirectResponse;
 
 class QRController extends BaseController
 {

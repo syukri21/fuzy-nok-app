@@ -141,6 +141,7 @@
     </div>
 
     <script src="<?= base_url() ?>js/clip.js"></script>
+    <script src="<?= base_url() ?>js/qr.js"></script>
 
     <!--    js modal-->
     <script>

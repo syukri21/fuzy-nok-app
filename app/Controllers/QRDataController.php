@@ -118,11 +118,16 @@ class QRDataController extends BaseController
         return redirect()->to('/qr')->with("success", "Data Deleted");
     }
 
-    public function showQrData($code): bool|string
+    public function showQrData($code): RedirectResponse
     {
         $QRDataModel = new QRDataModel();
         $data = $QRDataModel->where('code', $code)->first();
-        return json_encode($data->data);
+        return redirect()->to("/production/add")->with("qr", $data);
 
+    }
+
+    public function scan()
+    {
+        return view("Production/Scanner");
     }
 }

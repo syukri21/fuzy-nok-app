@@ -9,7 +9,7 @@ class AddQRURLtoMachine extends Migration
     public function up()
     {
         $this->forge->addColumn("machines", [
-            "qr_url" => [
+            "qr" => [
                 "type" => "VARCHAR",
                 "constraint" => 255,
                 "null" => true
@@ -19,6 +19,6 @@ class AddQRURLtoMachine extends Migration
 
     public function down()
     {
-        $this->forge->dropColumn("machines", "qr_url");
+        $this->forge->dropColumn("machines", "qr");
     }
 }
