@@ -52,3 +52,11 @@ $routes->post('/production/add', 'ProductionController::store');
 $routes->get('/production/edit/(:any)', 'ProductionController::edit/$1');
 $routes->post('/production/edit/(:any)', 'ProductionController::update/$1');
 $routes->get('/production/delete/(:any)', 'ProductionController::delete/$1');
+
+//shifts
+$routes->get('/shift', 'ShiftController::index');
+$routes->get('/shift/add', 'ShiftController::add');
+$routes->post('/shift/add', 'ShiftController::store');
+$routes->get('/shift/edit/(:any)', 'ShiftController::edit/$1');
+$routes->post('/shift/edit/(:any)', 'ShiftController::update/$1');
+$routes->get('/shift/delete/(:any)', 'ShiftController::delete/$1');

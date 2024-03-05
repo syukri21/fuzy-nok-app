@@ -1,6 +1,3 @@
-<?php
-
-?>
 <?= $this->extend('Layout/AdminLayout/Layout') ?>
 
 <?= $this->section('content') ?>
@@ -26,7 +23,7 @@
 
     <div class="card shadow mb-4 ">
         <div class="card-header d-flex justify-content-between align-items-center ">
-            <h6 class="m-0 font-weight-bold text-primary">Table QRData</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel QRData</h6>
 
             <div class="d-flex justify-content-end align-content-center align-items-center ">
                 <a href="/qr/add" class="btn btn-primary " role="button">
