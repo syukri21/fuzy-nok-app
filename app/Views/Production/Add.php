@@ -5,11 +5,12 @@
  * @var array $machine
  * @var array $qr
  * @var array $qr_data
+ * @var array $shifts
  * */
 ?>
 <?= $this->section('content') ?>
 
-<div class="container">
+<form class="container" method="post" action="/production/add">
     <div class="mt-3">
         <!--        machine-->
         <div class="row">
@@ -52,7 +53,7 @@
         <!--        cav-->
         <div class="row align-items-center">
             <div class="col-3 d-flex justify-content-between">
-                <span class="text-dark">Casv</span>
+                <span class="text-dark">Cav</span>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-3">
@@ -70,7 +71,7 @@
         <div class="mt-3"></div>
         <div class="row align-items-center">
             <div class="col-3 d-flex justify-content-between">
-                <span class="text-dark">Hasil</span>
+                <label for="hasil" class="text-dark">Hasil</label>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-9">
@@ -81,30 +82,38 @@
         <div class="mt-3"></div>
         <div class="row align-items-center">
             <div class="col-3 d-flex justify-content-between">
-                <span class="text-dark">Defect</span>
+                <label for="defect" class="text-dark">Defect</label>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control form-control-sm text-center" id="defect"
+                <input type="number" class="form-control form-control-sm text-center" id="defect"
                        name="defect">
             </div>
             <div class="col-3 d-flex justify-content-between">
-                <span class="text-dark">OK</span>
+                <label for="ok" class="text-dark">OK</label>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-3">
-                <input type="text" class="form-control form-control-sm text-center" id="ok"
+                <input type="number" class="form-control form-control-sm text-center" id="ok"
                        name="ok">
             </div>
         </div>
         <div class="mt-3"></div>
         <div class="row align-items-center">
             <div class="col-3 d-flex justify-content-between">
-                <span class="text-dark">Shift</span>
+                <label class="text-dark" for="shift">Shift</label>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-9">
-                <span class="text-dark">1</span>
+                <select class="form-select form-select-sm" id="shift" name="shift">
+                    <option value="" selected disabled>Pilih Shift</option>
+                    <?php foreach ($shifts as $shift) : ?>
+                        <option value="<?= $shift->id ?>"
+                                id="shift-option-<?= $shift->id ?>"
+                                data-shift-start="<?= $shift->start_time ?>"
+                                data-shift-end="<?= $shift->end_time ?>"><?= $shift->name ?></option>
+                    <?php endforeach; ?>
+                </select>
             </div>
         </div>
         <hr class="mt-3 border-0">
@@ -114,7 +123,9 @@
                 <span class="text-dark">:</span>
             </div>
             <div class="col-auto">
-                <span class="text-dark">08:00 - 18:00</span>
+                <span class="text-dark" id="start_time_text"></span>
+                <span class="text-dark"> - </span>
+                <span class="text-dark" id="end_time_text"></span>
             </div>
         </div>
 
@@ -132,4 +143,45 @@
     </div>
 
 
+    <!--    onSelect shift fill the Jam Kerja-->
+    <script>
+        window.onload = function () {
+
+            // on Change option
+            $("#shift").on("change", function (e) {
+                var $option = $("#shift-option-" + e.target.value);
+                let start = $option.data("shift-start");
+                let end = $option.data("shift-end");
+                $("#start_time_text").html(start);
+                $("#end_time_text").text(end);
+            })
+
+
+            const cav = <?= $qr_data->cav ?? 0  ?>;
+            //  on Change cycle
+            $("#cycle").on("keyup", function (e) {
+                let value = e.target.value;
+                $("#hasil").val(value * cav);
+            })
+
+            //  on Change cycle
+            $("#defect").on("keyup", function (e) {
+                let value = e.target.value;
+                var hasil = $("#hasil").val();
+                $("#ok").val(hasil - value)
+            })
+
+            //  on Change cycle
+            $("#ok").on("keyup", function (e) {
+                let value = e.target.value;
+                var hasil = $("#hasil").val();
+                $("#defect").val(hasil - value)
+            })
+        }
+    </script>
+
     <?= $this->endSection() ?>
+
+
+    <!--    script-->
+

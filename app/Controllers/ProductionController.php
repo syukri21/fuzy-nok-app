@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\MachineModel;
 use App\Models\QRDataModel;
+use App\Models\ShiftModel;
 
 class ProductionController extends BaseController
 {
@@ -16,6 +17,7 @@ class ProductionController extends BaseController
     {
         $qr = session()->getFlashdata('qr');
         $machineModel = new MachineModel();
+        $shiftModel = new ShiftModel();
         if (empty($qr)) {
 //            return redirect()->to('/home')->with('error', 'QR Tidak Ditemukan');
             $qr = (new QRDataModel())->first();
@@ -25,7 +27,12 @@ class ProductionController extends BaseController
             'qr' => $qr,
             'qr_data' => json_decode($qr->data),
             'machine' => $machine,
-            'title' => 'Produksi'
+            'title' => 'Produksi',
+            'shifts' => $shiftModel->findAll()
         ]);
+    }
+
+    public function store()
+    {
     }
 }
