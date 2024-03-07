@@ -34,5 +34,6 @@ class ProductionController extends BaseController
 
     public function store()
     {
+
     }
 }
