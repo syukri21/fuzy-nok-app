@@ -2,6 +2,12 @@
 
 <?= $this->section('content') ?>
 
+<?php
+/**
+ * @var array $items
+ */
+?>
+
 
     <div>
         <!--    add operator -->
@@ -77,8 +83,12 @@
                         <label for="item" class="col-form-label col-sm-2 text-dark">
                             Item
                         </label>
-                        <input type="text" class="form-control col-sm-10" id="noJobDesk" name="item"
-                               placeholder="Item"/>
+                        <select class="form-control col-sm-10" id="item" name="item">
+                            <?php foreach ($items as $item): ?>
+                                <option value="<?= $item->id ?>"><?= $item->name ?></option>
+                            <?php endforeach; ?>
+                        </select>
+
                     </div>
 
                     <!--                    cav-->

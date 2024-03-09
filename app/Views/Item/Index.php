@@ -67,12 +67,19 @@
                             <td> <?= $item->id ?></td>
                             <td> <?= $item->name ?></td>
                             <td> <?= $item->description ?></td>
-                            <td><img src="<?= base_url() . $item->image ?>" alt="image" width="100px"></td>
+                            <td><img src="<?= base_url()  . $item->image ?>" alt="image" width="100px"></td>
                             <td> <?= $item->created_at ?></td>
                             <td> <?= $item->updated_at ?></td>
-                            <td>
-                                <a href="/item/edit/<?= $item->id ?>" class="btn btn-primary">Edit</a>
-                                <a href="/item/delete/<?= $item->id ?>" class="btn btn-danger">Delete</a>
+
+                            <td class="text-center">
+                                <a href="/item/edit/<?= $item->id ?>" class="btn btn-primary btn-circle btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <button data-toggle="modal" data-target="#deleteModal" data-id="<?= $item->id ?>"
+                                        data-name="<?= $item->name ?>"
+                                        class="btn btn-danger btn-circle btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -82,5 +89,40 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+         aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmModalLabel">Delete <span id="delete-name"
+                                                                                class="text-primary"></span></h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Apa kamu yakin?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#">Yes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        window.onload = function () {
+            $('#deleteModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget)
+                var id = button.data('id')
+                var name = button.data('name')
+                var modal = $(this)
+                modal.find('.modal-title #delete-name').text(name)
+                modal.find('.modal-footer a').attr('href', '/item/delete/' + id)
+            })
+        }
+    </script>
 
 <?= $this->endSection() ?>

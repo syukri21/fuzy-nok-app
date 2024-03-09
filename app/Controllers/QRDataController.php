@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\ItemModel;
 use App\Models\QRDataModel;
 use CodeIgniter\HTTP\RedirectResponse;
 
@@ -25,7 +26,10 @@ class QRDataController extends BaseController
 
     public function add(): string
     {
-        return view('QR/Add');
+        $itemModel = new ItemModel();
+        return view('QR/Add', [
+            "items" => $itemModel->findAll()
+        ]);
     }
 
     public function store(): RedirectResponse
