@@ -67,8 +67,8 @@
 <!--        item-->
         <li class="nav-item">
             <a class="nav-link" href="/item">
-                <i class="fas fa-fw fa-product"></i>
-                <span>Item</span>
+                <i class="fas fa-fw fa-list"></i>
+                <span>item</span>
             </a>
         </li>
 
