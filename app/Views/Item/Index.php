@@ -41,7 +41,6 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                     <tr>
-                        <th>No</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -52,7 +51,6 @@
                     </thead>
                     <tfoot>
                     <tr>
-                        <th>No</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -64,7 +62,6 @@
                     <tbody>
                     <?php foreach ($data as $item) : ?>
                         <tr>
-                            <td> <?= $item->id ?></td>
                             <td> <?= $item->name ?></td>
                             <td> <?= $item->description ?></td>
                             <td><img src="<?= base_url()  . $item->image ?>" alt="image" width="100px"></td>
