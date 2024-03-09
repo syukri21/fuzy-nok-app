@@ -12,10 +12,11 @@ class ChangeItemToItemIdProduction extends Migration
         $this->forge->addColumn("productions", [
             "item_id" => [
                 "type" => "BIGINT",
+                "constraint" => 11,
                 "unsigned" => true,
-                'auto_increment' => true
             ]
         ]);
+        $this->forge->addForeignKey("item_id", "productions", "items", "id", "CASCADE", "CASCADE");
     }
 
     public function down()
@@ -23,10 +24,8 @@ class ChangeItemToItemIdProduction extends Migration
 
         $this->forge->dropColumn("productions", "item_id");
         $this->forge->addColumn("productions", [
-            "item_id" => [
-                "type" => "BIGINT",
-                "unsigned" => true,
-                'auto_increment' => true
+            "item" => [
+                "type" => "VARCHAR",
             ]
         ]);
     }

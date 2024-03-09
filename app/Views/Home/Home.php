@@ -27,18 +27,21 @@
     <h6 class="text-dark">Action</h6>
     <hr class="border-top-0 mb-4">
 
-    <div class="btn-group w-100">
+    <div class="d-flex w-100">
         <!--        two button produksi and report produksi-->
-        <a class="btn btn-lh btn-primary w-100" href="/qr/scan">
-            <i class="fas fa-box mr-3"></i>
-            Produksi
-        </a>
+        <div class="w-100 pr-2">
+            <a class="btn btn-lh btn-primary w-100 h-100 " href="/qr/scan">
+                <i class="fas fa-box mr-3"></i>
+                Produksi
+            </a>
+        </div>
 
-        <button class="btn btn-lg btn-success w-100">
-            <i class="fas fa-file mr-3"></i>
-            Laporan
-        </button>
-
+        <div class="w-100 pl-2">
+            <a class="btn btn-lg btn-success w-100 w-100 h-100 " href="/production/report">
+                <i class="fas fa-file mr-3"></i>
+                Laporan
+            </a>
+        </div>
     </div>
 </div>
 

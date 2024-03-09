@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\ProductionEntity;
 use CodeIgniter\Model;
 
 class ProductionModel extends Model
@@ -9,11 +10,25 @@ class ProductionModel extends Model
     protected $table            = 'productions';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
-    protected $returnType       = 'array';
-    protected $useSoftDeletes   = false;
+    protected $returnType = ProductionEntity::class;
+    protected $useSoftDeletes = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
-
+        'id',
+        'user_id',
+        'machine_id',
+        'shift_id',
+        'item_id',
+        'job',
+        'qty',
+        'noJobDesk',
+        'item',
+        'cav',
+        'cycle',
+        'result',
+        'defect',
+        'ok',
+        'qty'
     ];
 
     protected bool $allowEmptyInserts = false;

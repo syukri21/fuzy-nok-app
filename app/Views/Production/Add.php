@@ -11,7 +11,13 @@
 ?>
 <?= $this->section('content') ?>
 
-<form class="container" method="post" action="/production/add">
+<form class="container" method="post" action="/production/add/<?= $qr->id ?>">
+    <!--    flash error-->
+    <?php if (!empty(session()->getFlashdata('error'))) : ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->getFlashdata('error') ?>
+        </div>
+    <?php endif; ?>
     <div class="mt-3">
         <!--        machine-->
         <div class="row">
@@ -72,18 +78,18 @@
         <div class="mt-3"></div>
         <div class="row align-items-center">
             <div class="col-3 d-flex justify-content-between">
-                <label for="hasil" class="text-dark">Hasil</label>
+                <label for="result" class="text-dark">Hasil</label>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-9">
-                <input type="text" class="form-control form-control-sm text-center" id="hasil" name="hasil"/>
+                <input type="text" class="form-control form-control-sm text-center" id="result" name="result"/>
             </div>
         </div>
 
         <div class="mt-3"></div>
         <div class="row align-items-center">
             <div class="col-3 d-flex justify-content-between">
-                <label for="defect" class="text-dark">Defect</label>
+                <span class="text-dark">Defect</span>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-3">
@@ -91,7 +97,7 @@
                        name="defect">
             </div>
             <div class="col-3 d-flex justify-content-between">
-                <label for="ok" class="text-dark">OK</label>
+                <span class="text-dark">OK</span>
                 <span class="text-dark">:</span>
             </div>
             <div class="col-3">
@@ -106,7 +112,7 @@
                 <span class="text-dark">:</span>
             </div>
             <div class="col-9">
-                <select class="form-select form-select-sm" id="shift" name="shift">
+                <select class="form-select form-select-sm" id="shift" name="shift_id">
                     <option value="" selected disabled>Pilih Shift</option>
                     <?php foreach ($shifts as $shift) : ?>
                         <option value="<?= $shift->id ?>"
@@ -162,21 +168,21 @@
             //  on Change cycle
             $("#cycle").on("keyup", function (e) {
                 let value = e.target.value;
-                $("#hasil").val(value * cav);
+                $("#result").val(value * cav);
             })
 
             //  on Change cycle
             $("#defect").on("keyup", function (e) {
                 let value = e.target.value;
-                var hasil = $("#hasil").val();
-                $("#ok").val(hasil - value)
+                var result = $("#result").val();
+                $("#ok").val(result - value)
             })
 
             //  on Change cycle
             $("#ok").on("keyup", function (e) {
                 let value = e.target.value;
-                var hasil = $("#hasil").val();
-                $("#defect").val(hasil - value)
+                var result = $("#result").val();
+                $("#defect").val(result - value)
             })
         }
     </script>
