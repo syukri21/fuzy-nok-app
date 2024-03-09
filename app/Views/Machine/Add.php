@@ -33,8 +33,8 @@
                 </div>
                 <!--                qr path -->
                 <div class="form-group row">
-                    <label class="col-2 col-form-label" for="qr_path">QR Path</label>
-                    <input type="text" class="form-control col-sm-8 rounded-0" id="qr_path" name="qr_path">
+                    <label class="col-2 col-form-label" for="qr">QR Path</label>
+                    <input type="text" class="form-control col-sm-8 rounded-0" id="qr" name="qr">
                     <button class="btn btn-secondary col-sm-2 rounded-0" type="button" id="generate-qr">Generate QR
                     </button>
                 </div>

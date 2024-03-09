@@ -6,6 +6,7 @@
  * @var array $qr
  * @var array $qr_data
  * @var array $shifts
+ * @var array $item
  * */
 ?>
 <?= $this->section('content') ?>
@@ -42,7 +43,7 @@
                 <span class="text-dark">Item</span>
                 <span class="text-dark">:</span>
             </div>
-            <div class="col-auto"><span class="text-dark"><?= $qr_data->item ?></span>
+            <div class="col-auto"><span class="text-dark"><?= $item->name ?></span>
             </div>
         </div>
     </div>
