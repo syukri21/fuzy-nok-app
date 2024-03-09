@@ -64,6 +64,14 @@
             </a>
         </li>
 
+<!--        item-->
+        <li class="nav-item">
+            <a class="nav-link" href="/item">
+                <i class="fas fa-fw fa-product"></i>
+                <span>Item</span>
+            </a>
+        </li>
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 

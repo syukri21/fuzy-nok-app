@@ -60,3 +60,11 @@ $routes->post('/shift/add', 'ShiftController::store');
 $routes->get('/shift/edit/(:any)', 'ShiftController::edit/$1');
 $routes->post('/shift/edit/(:any)', 'ShiftController::update/$1');
 $routes->get('/shift/delete/(:any)', 'ShiftController::delete/$1');
+
+// item
+$routes->get('/item', 'ItemController::index');
+$routes->get('/item/add', 'ItemController::add');
+$routes->post('/item/add', 'ItemController::store');
+$routes->get('/item/edit/(:any)', 'ItemController::edit/$1');
+$routes->post('/item/edit/(:any)', 'ItemController::update/$1');
+$routes->get('/item/delete/(:any)', 'ItemController::delete/$1');
