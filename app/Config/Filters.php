@@ -2,6 +2,9 @@
 
 namespace Config;
 
+use App\Filters\AdminFilter;
+use App\Filters\AuthFilter;
+use App\Filters\OperatorFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -24,6 +27,9 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'authfilter' => AuthFilter::class,
+        'checkadmin' => AdminFilter::class,
+        'checkoperator' => OperatorFilter::class,
     ];
 
     /**
@@ -37,6 +43,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
+            "authfilter"
         ],
         'after' => [
             'toolbar',
@@ -65,5 +72,6 @@ class Filters extends BaseConfig
      * Example:
      * 'isLoggedIn' => ['before' => ['account/*', 'profiles/*']]
      */
-    public array $filters = [];
+    public array $filters = [
+    ];
 }

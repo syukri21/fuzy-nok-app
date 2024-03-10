@@ -23,6 +23,7 @@ class UserModel extends Model
         }
         session()->set("role", $user->role);
         session()->set("data", $user->toArray());
+        session()->set("isLoggedIn", true);
         return $user;
     }
 
