@@ -27,7 +27,7 @@ class OperatorFilter implements FilterInterface
     {
         $role = session()->get("role");
         if ($role != "operator") {
-            return redirect()->to('/admin')->with('error', 'Please login first');
+            return redirect()->to('/login')->with('error', 'Please login first');
         }
     }
 

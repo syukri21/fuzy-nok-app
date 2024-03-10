@@ -20,8 +20,6 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
     $routes->get('/operator/delete/(:any)', 'OperatorController::delete/$1');
     $routes->post('/operator/upload-image/(:any)', 'OperatorController::uploadImage/$1');
 
-    // QR
-    $routes->post('/qr/generate', 'QRController::generate');
 
     // qr
     $routes->get('/qr', 'QRDataController::index');
@@ -30,7 +28,6 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
     $routes->get('/qr/edit/(:any)', 'QRDataController::edit/$1');
     $routes->post('/qr/edit/(:any)', 'QRDataController::update/$1');
     $routes->get('/qr/delete/(:any)', 'QRDataController::delete/$1');
-    $routes->get("/api/qr/(:any)", "QRDataController::showQrData/$1");
 
 
     //shifts
@@ -61,6 +58,7 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
 
 });
 
+$routes->post('/qr/generate', 'QRController::generate');
 
 
 // Login
@@ -71,6 +69,11 @@ $routes->post('/logout', 'AuthController::logout');
 $routes->group('', ['filter' => 'checkoperator'], function ($routes) {
     $routes->get('/', 'Home::index');
     $routes->get('/home', 'Home::index');
+
+    // QR
+    $routes->get("/api/qr/(:any)", "QRDataController::showQrData/$1");
+
+
 
     // production
     $routes->get('/production', 'ProductionController::index');

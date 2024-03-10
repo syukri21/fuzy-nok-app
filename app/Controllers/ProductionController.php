@@ -37,8 +37,8 @@ class ProductionController extends BaseController
         $machineModel = new MachineModel();
         $shiftModel = new ShiftModel();
         if (empty($qr)) {
-//            return redirect()->to('/home')->with('error', 'QR Tidak Ditemukan');
-            $qr = (new QRDataModel())->first();
+            return redirect()->to('/home')->with('error', 'QR Tidak Ditemukan');
+//            $qr = (new QRDataModel())->first();
         }
         $machine = $machineModel->where("qr", $qr->code)->first();
         $itemModel = new ItemModel();

@@ -27,7 +27,7 @@ class AdminFilter implements FilterInterface
     {
         $role = session()->get("role");
         if ($role != "admin") {
-            return redirect()->to('')->with('error', 'Please login first');
+            return redirect()->to('/login')->with('error', 'Please login first');
         }
     }
 
