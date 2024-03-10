@@ -2,8 +2,7 @@
 
 <?= $this->section('content') ?>
 
-
-    <div class="container mt-4">
+    <div class="container mt-5">
 
         <?php
         /**
@@ -33,9 +32,9 @@
                 ?>
                 <tr>
 
-                    <td><?= $item->machine_id ?></td>
-                    <td><?= $item->shift_id ?></td>
-                    <td><?= $item->item_id ?></td>
+                    <td><?= $item->machine_name ?></td>
+                    <td><?= $item->shift_name ?></td>
+                    <td><?= $item->item_name ?></td>
                     <td><?= $item->job ?></td>
                     <td><?= $item->noJobDesk ?></td>
                     <td><?= $item->cav ?></td>

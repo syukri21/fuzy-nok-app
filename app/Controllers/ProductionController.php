@@ -17,7 +17,12 @@ class ProductionController extends BaseController
         $user = session()->get('data');
 
         $productionModel = new ProductionModel();
-        $productionModel->where('user_id', $user['id']);
+        $productionModel->where('user_id', $user['id'])
+            ->select("productions.*, items.name as item_name, machines.name as machine_name, shifts.name as shift_name")
+            ->join("machines", "machines.id = productions.machine_id", "LEFT")
+            ->join("items", "items.id = productions.item_id")
+            ->join("shifts", "shifts.id = productions.shift_id")
+            ->orderBy("productions.id", "DESC");
 
         return view('Production/Index', [
             'title' => 'Laporan Produksi',
