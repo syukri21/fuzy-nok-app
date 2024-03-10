@@ -74,6 +74,7 @@ $routes->group('', ['filter' => 'checkoperator'], function ($routes) {
 
     // production
     $routes->get('/production', 'ProductionController::index');
+    $routes->get('/production/report', 'ProductionController::index');
     $routes->get('/production/add', 'ProductionController::add');
     $routes->post('/production/add/(:any)', 'ProductionController::store/$1');
     $routes->get('/production/edit/(:any)', 'ProductionController::edit/$1');

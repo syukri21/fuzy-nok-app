@@ -28,7 +28,6 @@ class ProductionModel extends Model
         'result',
         'defect',
         'ok',
-        'qty'
     ];
 
     protected bool $allowEmptyInserts = false;

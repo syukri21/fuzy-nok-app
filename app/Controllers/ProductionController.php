@@ -13,7 +13,17 @@ class ProductionController extends BaseController
 {
     public function index()
     {
-        return view('Production/Index');
+        $page = $this->request->getGet("page_operator") ?? 1;
+        $user = session()->get('data');
+
+        $productionModel = new ProductionModel();
+        $productionModel->where('user_id', $user['id']);
+
+        return view('Production/Index', [
+            'title' => 'Laporan Produksi',
+            'data' => $productionModel->paginate(20, 'production', $page),
+            'pager' => $productionModel->pager
+        ]);
     }
 
     public function add()
