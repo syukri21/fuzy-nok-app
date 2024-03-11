@@ -60,6 +60,7 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
 
 $routes->post('/qr/generate', 'QRController::generate');
 
+$routes->get("/api/chart", "ProductionController::chart");
 
 // Login
 $routes->get('/login', 'AuthController::index');
@@ -72,8 +73,6 @@ $routes->group('', ['filter' => 'checkoperator'], function ($routes) {
 
     // QR
     $routes->get("/api/qr/(:any)", "QRDataController::showQrData/$1");
-
-
 
     // production
     $routes->get('/production', 'ProductionController::index');

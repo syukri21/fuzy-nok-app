@@ -60,24 +60,69 @@
 <script src="<?= base_url() ?>dependencies/chart.js/chart.js"></script>
 <script>
 
-    var ctx = document.getElementById("chartProduksi").getContext('2d');
+    window.onload = function () {
+        const ctx = document.getElementById("chartProduksi").getContext('2d');
 
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June", "July"],
-            datasets: [{
-                label: 'Produksi',
-                data: [12, 19, 3, 5, 2, 3, 10],
-                tension: 0.3
-            }],
-        },
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [{
+                    label: 'Produksi',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    tension: 0.3
+                }],
+            },
 
-        // Configuration options go here
-        options: {
-            responsive: true,
-        },
-    });
+            // Configuration options go here
+            options: {
+                responsive: true,
+            },
+        });
+
+        //     call api /api/chart
+        $.ajax({
+            url: '/api/chart',
+            method: 'GET',
+            success: function (data) {
+                data = JSON.parse(data)
+                data = data.data
+                const datasets = [
+                    {
+                        label: 'Defect',
+                        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                        tension: 0.3,
+                        borderColor: '#eb3636',
+                        backgroundColor: '#f59b9b',
+                    },
+                    {
+                        label: 'OK',
+                        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                        tension: 0.3,
+                        borderColor: '#2db300',
+                        backgroundColor: '#ffffff',
+                    }
+                ]
+
+                for (let i = 0; i < 12; i++) {
+                    const month = i + 1
+                    for (const item of data) {
+                        console.log(data.length)
+                        console.log(i)
+                        if (parseInt(item.date) === month) {
+                            console.log(item)
+                            datasets[0].data[i] = parseInt(item.defect)
+                            datasets[1].data[i] = parseInt(item.ok)
+                        }
+                    }
+                }
+                myChart.data.datasets = datasets
+                myChart.update()
+            }
+        })
+    }
+
+
 </script>
 
 

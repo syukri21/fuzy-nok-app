@@ -106,4 +106,21 @@ class ProductionController extends BaseController
 
 
     }
+
+    public function chart()
+    {
+        $user = session()->get('data');
+        if (empty($user)) {
+            log_message("error", "User Not Found");
+            return json_encode([
+                "error" => "User Not Found",
+                "code" => 401
+            ]);
+        }
+        $db = db_connect();
+        $query = $db->query("SELECT DATE_FORMAT(created_at, '%m') as date, SUM(result) as result, SUM(defect ) as defect, SUM(ok) as ok FROM productions WHERE user_id = " . $user['id'] . " GROUP BY DATE_FORMAT(created_at, '%m')");
+        return json_encode([
+            "data" => $query->getResultArray()
+        ]);
+    }
 }
