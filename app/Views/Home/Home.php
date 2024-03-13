@@ -73,7 +73,6 @@
             type: 'line',
             data: {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
-
             },
 
             // Configuration options go here
