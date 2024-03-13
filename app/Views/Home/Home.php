@@ -52,29 +52,41 @@
 <!--    generate chart-->
 <div class="container mt-5">
     <!--        title-->
-    <h6 class="text-dark">Chart</h6>
+    <h6 class="text-dark">OK Chart</h6>
     <hr class="border-top-0">
-    <canvas id="chartProduksi"></canvas>
+    <canvas id="okproduction"></canvas>
 </div>
-<!--    js chart-->
+
+<div class="container mt-5">
+    <!--        title-->
+    <h6 class="text-dark">Defect Chart</h6>
+    <hr class="border-top-0">
+    <canvas id="defectproduction"></canvas>
+</div>
+<!local builtin = require('telescope.builtin')--    js chart-->
 <script src="<?= base_url() ?>dependencies/chart.js/chart.js"></script>
 <script>
 
     window.onload = function () {
-        const ctx = document.getElementById("chartProduksi").getContext('2d');
-
-        const myChart = new Chart(ctx, {
+        const ctx = document.getElementById("okproduction").getContext('2d');
+        const okChart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [{
-                    label: 'Produksi',
-                    data: [12, 19, 3, 5, 2, 3, 10],
-                    tension: 0.3
-                }],
+
             },
 
             // Configuration options go here
+            options: {
+                responsive: true,
+            },
+        });
+        const defectCtx = document.getElementById("defectproduction").getContext('2d');
+        const defectChart = new Chart(defectCtx, {
+            type: 'line',
+            data: {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+            },
             options: {
                 responsive: true,
             },
@@ -89,18 +101,21 @@
                 data = data.data
                 const datasets = [
                     {
-                        label: 'Defect',
-                        data: [0,0,0,0,0,0,0,0,0,0,0,0],
-                        tension: 0.3,
-                        borderColor: '#eb3636',
-                        backgroundColor: '#f59b9b',
-                    },
-                    {
                         label: 'OK',
                         data: [0,0,0,0,0,0,0,0,0,0,0,0],
                         tension: 0.3,
                         borderColor: '#2db300',
                         backgroundColor: '#ffffff',
+                    }
+                ]
+
+                const defectDatasets = [
+                    {
+                        label: 'Defect',
+                        data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                        tension: 0.3,
+                        borderColor: '#eb3636',
+                        backgroundColor: '#f59b9b',
                     }
                 ]
 
@@ -111,13 +126,15 @@
                         console.log(i)
                         if (parseInt(item.date) === month) {
                             console.log(item)
-                            datasets[0].data[i] = parseInt(item.defect)
-                            datasets[1].data[i] = parseInt(item.ok)
+                            defectDatasets[0].data[i] = parseInt(item.defect)
+                            datasets[0].data[i] = parseInt(item.ok)
                         }
                     }
                 }
-                myChart.data.datasets = datasets
-                myChart.update()
+                okChart.data.datasets = datasets
+                defectChart.data.datasets = defectDatasets
+                defectChart.update()
+                okChart.update()
             }
         })
     }
