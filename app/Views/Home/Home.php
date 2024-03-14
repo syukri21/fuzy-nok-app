@@ -105,7 +105,14 @@
                         tension: 0.3,
                         borderColor: '#2db300',
                         backgroundColor: '#ffffff',
-                    }
+                    },
+                    {
+                        label: 'Target',
+                        data: [0,0,0,0,0,0,0,0,0,0,0,0],
+                        tension: 0.3,
+                        borderColor: '#b30000',
+                        backgroundColor: '#ffffff',
+                    },
                 ]
 
                 const defectDatasets = [
@@ -121,11 +128,10 @@
                 for (let i = 0; i < 12; i++) {
                     const month = i + 1
                     for (const item of data) {
-                        console.log(data.length)
-                        console.log(i)
                         if (parseInt(item.date) === month) {
                             console.log(item)
                             defectDatasets[0].data[i] = parseInt(item.defect)
+                            datasets[1].data[i] = parseInt(item.qrs)
                             datasets[0].data[i] = parseInt(item.ok)
                         }
                     }

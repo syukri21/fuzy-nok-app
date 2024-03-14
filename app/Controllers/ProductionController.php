@@ -118,9 +118,14 @@ class ProductionController extends BaseController
             ]);
         }
         $db = db_connect();
-        $query = $db->query("SELECT DATE_FORMAT(created_at, '%m') as date, SUM(result) as result, SUM(defect ) as defect, SUM(ok) as ok FROM productions WHERE user_id = " . $user['id'] . " GROUP BY DATE_FORMAT(created_at, '%m')");
+        $query = $db->query("SELECT DATE_FORMAT(productions.created_at, '%m') as date, SUM(result) as result, SUM(defect ) as defect, SUM(ok) as ok,  SUM(CAST(json_extract(qrdatas.data, '$.targetCycle') AS UNSIGNED) * CAST(json_extract(qrdatas.data, '$.cav') AS UNSIGNED)) as qrs
+                                    FROM productions 
+                                    LEFT JOIN machines ON machines.id = productions.machine_id
+                                    LEFT JOIN qrdatas ON qrdatas.code = machines.qr  
+                                WHERE user_id = " . $user['id'] . " GROUP BY DATE_FORMAT(productions.created_at, '%m')");
+        $resultArray = $query->getResultArray();
         return json_encode([
-            "data" => $query->getResultArray()
+            "data" => $resultArray,
         ]);
     }
 }
