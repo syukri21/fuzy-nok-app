@@ -35,7 +35,7 @@
         const $loading = $("#loading");
         $loading.css("opacity", 1)
         $loading.css("height", "100vh")
-        window.location.replace(result.data)
+        window.location.replace(window.location.origin + "/api/qr/" + result.data)
 
     }
 
