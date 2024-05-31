@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Entities\UserEntity;
 use CodeIgniter\Model;
-use http\Exception\InvalidArgumentException;
 
 class UserModel extends Model
 {
@@ -16,7 +15,7 @@ class UserModel extends Model
     {
         $user = $this->groupStart()->where(['email' => $username])->orWhere(['username' => $username])->orWhere(['nik' => $username])->groupEnd()->doFirst();
         if ($user == null) {
-            throw new InvalidArgumentException("Invalid username or password");
+            throw new \InvalidArgumentException("Invalid username or password");
         }
         if (!$user->verify($password)) {
             throw new \InvalidArgumentException("Invalid username or password");
