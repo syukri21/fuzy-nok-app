@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\OrderEntity;
 use CodeIgniter\Model;
 
 class OrderModel extends Model
@@ -9,13 +10,14 @@ class OrderModel extends Model
   protected $table            = 'orders';
   protected $primaryKey       = 'id';
   protected $useAutoIncrement = true;
-  protected $returnType       = 'array';
+  protected $returnType       = OrderEntity::class;
   protected $useSoftDeletes   = true;
   protected $protectFields    = true;
   protected $allowedFields    = [
     'item_id',
     'order_machines_id',
     'order_pieces',
+    'order_code'
   ];
 
   protected bool $allowEmptyInserts = false;

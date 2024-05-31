@@ -70,6 +70,15 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
 
 $routes->group('',['filter' => 'checkppic'], function ($routes) {
     $routes->get('/ppic', 'Home::ppicHome');
+
+    // order
+    $routes->get('/order', 'OrderController::index');
+    $routes->get('/order/add', 'OrderController::add');
+    $routes->post('/order/add', 'OrderController::store');
+    $routes->get('/order/edit/(:any)', 'OrderController::edit/$1');
+    $routes->post('/order/edit/(:any)', 'OrderController::update/$1');
+    $routes->get('/order/delete/(:any)', 'OrderController::delete/$1');
+
 });
 
 // Check is operator that login into ...

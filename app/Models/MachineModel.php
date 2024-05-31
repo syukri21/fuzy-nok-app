@@ -16,7 +16,7 @@ class MachineModel extends Model
     protected $allowedFields = [
         'name',
         'description',
-        'cav',
+        'cavity',
         'qr'
     ];
 

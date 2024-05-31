@@ -40,17 +40,17 @@ class QRController extends BaseController
     $code = '';
     for ($i = 0; $i < 10; $i++) {
       if ($i == 0) {
-        // First character is always a letter
-        $randomChar = chr(mt_rand(65, 90)); // ASCII values for A-Z
+        // first character is always a letter
+        $randomchar = chr(mt_rand(65, 90)); // ascii values for a-z
       } else {
-        // Following characters can be letters or numbers
+        // following characters can be letters or numbers
         if (mt_rand(0, 1) == 0) {
-          $randomChar = chr(mt_rand(65, 90)); // ASCII values for A-Z
+          $randomchar = chr(mt_rand(65, 90)); // ascii values for a-z
         } else {
-          $randomChar = chr(mt_rand(48, 57)); // ASCII values for 0-9
+          $randomchar = chr(mt_rand(48, 57)); // ascii values for 0-9
         }
       }
-      $code .= $randomChar;
+      $code .= $randomchar;
     }
     return $code;
   }
