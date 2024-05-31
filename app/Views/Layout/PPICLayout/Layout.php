@@ -19,56 +19,23 @@
 
         <!-- Heading -->
         <div class="sidebar-heading">
-            User
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="/operator">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Operator</span>
-            </a>
-        </li>
-
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
             Produksi
         </div>
 
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="/machine">
-                <i class="fas fa-fw fa-laptop"></i>
-                <span>Mesin</span>
+            <a class="nav-link" href="/report-production">
+                <i class="fas fa-fw fa-donate"></i>
+                <span>Laporan Produksi</span>
             </a>
         </li>
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="/qr">
-                <i class="fas fa-fw fa-qrcode"></i>
-                <span>QR</span>
-            </a>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link" href="/shift">
-                <i class="fas fa-fw fa-calendar"></i>
-                <span>Shift</span>
-            </a>
-        </li>
-
-<!--        item-->
-        <li class="nav-item">
-            <a class="nav-link" href="/item">
-                <i class="fas fa-fw fa-list"></i>
-                <span>item</span>
+            <a class="nav-link" href="/order">
+                <i class="fas fa-fw fa-file"></i>
+                <span>Order</span>
             </a>
         </li>
 
