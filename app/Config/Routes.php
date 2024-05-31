@@ -63,7 +63,7 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
     $routes->get('/machine/edit/(:any)', 'MachineController::edit/$1');
     $routes->post('/machine/edit/(:any)', 'MachineController::update/$1');
     $routes->get('/machine/delete/(:any)', 'MachineController::delete/$1');
-
+    $routes->get('/qr/generate', 'QRController::acquireQRCode');
 
 });
 
