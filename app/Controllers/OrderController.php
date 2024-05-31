@@ -108,25 +108,85 @@ class OrderController extends BaseController
   {
     $orderModel = new OrderModel();
     $data = $orderModel->find($id);
+
+    $items = (new ItemModel())->findAll();
+    $machines = (new MachineModel())->findAll();
+
+    $orderMachineModel = new OrderMachinesModel();
+    $orderedMachines = $orderMachineModel->where('order_id', $id)->findAll();
+
+
     return view('Order/Edit', [
-      'data' => $data
+      'data' => $data->toArray(),
+      'items' => $items,
+      'machines' => $machines,
+      'orderedMachines' => $orderedMachines
     ]);
   }
 
   public function update($id): RedirectResponse
   {
+
+    $orderModel = new OrderModel();
+
     try {
-      $data = [
-        'name' => $this->request->getPost('name'),
-        'description' => $this->request->getPost('description'),
-        'qr' => $this->request->getPost('qr'),
-      ];
-      $orderModel = new OrderModel();
-      $orderModel->update($id, $data);
-      return redirect()->to('/order')->with("success", $data['name'] . " Data Updated");
+      $data = $this->request->getpost([
+        'machine_ids',
+        'target',
+        'item_id',
+      ]);
+
+      if ($data['item_id'] == "" || !$data['item_id']) {
+        throw new \Exception("Item cannot be empty");
+      }
+
+      if ($data['machine_ids'] == "" || !$data['machine_ids']) {
+        throw new \Exception("Machines cannot be empty");
+      }
+
+      if ($data['target'] == "" || !$data['target']) {
+        throw new \Exception("Target cannot be empty");
+      }
+
+      $orderModel->db->transBegin();
+
+      $order = $orderModel->find($id);
+      if (!$order) {
+        throw new \Exception("Order not found");
+      }
+
+      $order->item_id = $data['item_id'];
+      $order->order_pieces = $data['target'];
+      $order->updated_at = date('Y-m-d H:i:s');
+      $orderModel->save($order);
+
+
+      $orderMachineModel = new OrderMachinesModel();
+      $orderMachineModel->where('order_id', $id)->delete(null, true);
+
+      $machineModel = new MachineModel();
+      $machine_ids_arr = explode(",", $data['machine_ids']);
+
+      foreach ($machine_ids_arr as $machine_id) {
+        $machine = $machineModel->find($machine_id);
+        if (!$machine) {
+          throw new \Exception("Machine not found");
+        }
+        $orderMachineModel = new OrderMachinesModel();
+        $cycle = $data['target'] / (sizeof($machine_ids_arr) * $machine->cavity * 2);
+        $orderMachineModel->save([
+          'order_id' => $id, 
+          'machine_id' => $machine_id,
+          'target_cycle' => $cycle
+        ]);
+      }
+
+      $orderModel->db->transCommit();
+      return redirect()->to('/order')->with("success", "Data Added");
     } catch (\Exception $e) {
       log_message("error", $e->getMessage());
-      return redirect()->to('/order/edit')->with('error', $e->getMessage());
+      $orderModel->db->transRollback();
+      return redirect()->to('/order/add')->with('error', $e->getMessage());
     }
   }
 

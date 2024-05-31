@@ -17,7 +17,8 @@ class OrderModel extends Model
     'item_id',
     'order_machines_id',
     'order_pieces',
-    'order_code'
+    'order_code',
+    'updated_at'
   ];
 
   protected bool $allowEmptyInserts = false;

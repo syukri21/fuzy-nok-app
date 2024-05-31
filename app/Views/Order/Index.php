@@ -40,7 +40,6 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Order Code</th>
             <th>Target Produksi</th>
             <th>Status</th>
@@ -63,9 +62,9 @@
           <?php
           foreach ($data as $datum) : ?>
             <tr>
-              <td><?= $datum->id ?></td>
               <td><?= $datum->order_code ?></td>
               <td><?= $datum->order_pieces ?></td>
+              <td class="date-check-status" data-date="<?= $datum->created_at ?>">Loading ...</td>
               <td><?= $datum->created_at->humanize() ?></td>
               <td><?= $datum->updated_at->humanize() ?></td>
               <td class="d-flex justify-content-around">
@@ -111,6 +110,20 @@
       var modal = $(this)
       modal.find('.modal-title #delete-name').text(name)
       modal.find('.modal-footer a').attr('href', '/order/delete/' + id)
+    })
+
+
+    $(".date-check-status").each(function() {
+      const date = new Date($(this).attr("data-date"));
+      let currentDate = new Date();
+      if (date.setHours(0, 0, 0, 0) == currentDate.setHours(0, 0, 0, 0)) {
+        $(this).addClass("text-success");
+        $(this).text("ACTIVE");
+      } else {
+        $(this).addClass("text-danger");
+        $(this).text("IN ACTIVE");
+      }
+
     })
   }
 </script>
