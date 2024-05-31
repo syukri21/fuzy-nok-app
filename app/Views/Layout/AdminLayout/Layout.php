@@ -50,14 +50,6 @@
 
         <!-- Nav Item - Utilities Collapse Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="/qr">
-                <i class="fas fa-fw fa-qrcode"></i>
-                <span>QR</span>
-            </a>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
             <a class="nav-link" href="/shift">
                 <i class="fas fa-fw fa-calendar"></i>
                 <span>Shift</span>

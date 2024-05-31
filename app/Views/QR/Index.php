@@ -128,9 +128,9 @@
 
 <!--    js modal-->
 <script>
-            let asd = new QRCode();
+  let asd = new QRCode();
 
-console.log(asd)
+  console.log(asd)
 
   function onClickButtonShowModal() {
     $(".show-qr").on("click", function() {
