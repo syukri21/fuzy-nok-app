@@ -18,12 +18,10 @@
             rel="stylesheet">
 
     <!-- Custom styles for this template -->
-
-    <link href="<?= base_url() ?>dependencies/bootstrap-5.0.2-dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
     <link href="<?= base_url() ?>css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="<?= base_url() ?>dependencies/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 

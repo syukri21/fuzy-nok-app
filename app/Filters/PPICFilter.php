@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class OperatorFilter implements FilterInterface
+class PPICFilter implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -26,8 +26,8 @@ class OperatorFilter implements FilterInterface
     public function before(RequestInterface $request, $arguments = null)
     {
         $role = session()->get("role");
-        if ($role != "operator") {
-            return redirect()->to('/login')->with('error', 'Please login first');
+        if ($role != "ppic") {
+            return redirect()->to('/login')->with('error', 'Anda bukan PPIC, silahkan login terlebih dahulu sebagai PPIC');
         }
     }
 
@@ -47,5 +47,4 @@ class OperatorFilter implements FilterInterface
     {
         //
     }
-
 }

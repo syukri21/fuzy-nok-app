@@ -23,6 +23,7 @@ class OperatorController extends BaseController
 
             // split email by @ get first part and add the number last 4 nik
             $username = substr($post['email'], 0, strpos($post['email'], '@')) . substr($post['nik'], -4);
+
             $userModel = new UserModel();
             $userEntity = new UserEntity([
                 ...$post,

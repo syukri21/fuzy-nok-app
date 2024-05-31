@@ -7,6 +7,15 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 
+$routes->post('/qr/generate', 'QRController::generate');
+$routes->get("/api/chart", "ProductionController::chart");
+
+// Login
+$routes->get('/login', 'AuthController::index');
+$routes->post('/login', 'AuthController::login');
+$routes->post('/logout', 'AuthController::logout');
+
+// Check if admin is login above ..
 $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
     $routes->get('/admin', 'Home::adminHome');
     $routes->get('/operator', 'Home::adminHome');
@@ -58,15 +67,12 @@ $routes->group("", ['filter' => 'checkadmin'], function ($routes) {
 
 });
 
-$routes->post('/qr/generate', 'QRController::generate');
 
-$routes->get("/api/chart", "ProductionController::chart");
+$routes->group('',['filter' => 'checkppic'], function ($routes) {
+    $routes->get('/ppic', 'Home::ppicHome');
+});
 
-// Login
-$routes->get('/login', 'AuthController::index');
-$routes->post('/login', 'AuthController::login');
-$routes->post('/logout', 'AuthController::logout');
-
+// Check is operator that login into ...
 $routes->group('', ['filter' => 'checkoperator'], function ($routes) {
     $routes->get('/', 'Home::index');
     $routes->get('/home', 'Home::index');

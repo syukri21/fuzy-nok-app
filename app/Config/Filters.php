@@ -5,6 +5,7 @@ namespace Config;
 use App\Filters\AdminFilter;
 use App\Filters\AuthFilter;
 use App\Filters\OperatorFilter;
+use App\Filters\PPICFilter;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -30,6 +31,7 @@ class Filters extends BaseConfig
         'authfilter' => AuthFilter::class,
         'checkadmin' => AdminFilter::class,
         'checkoperator' => OperatorFilter::class,
+        'checkppic' => PPICFilter::class,
     ];
 
     /**
